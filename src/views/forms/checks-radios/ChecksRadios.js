@@ -1,6 +1,6 @@
 import React from 'react'
 import { CCard, CCardBody, CCardHeader, CCol, CFormCheck, CFormSwitch, CRow } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
+// import { DocsCallout} from 'src/components/DocsCallout'
 
 const ChecksRadios = () => {
   return (

@@ -4,7 +4,7 @@ import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilCode, cilMediaPlay } from '@coreui/icons'
 
-import packageJson from '../../package.json'
+// import packageJson from '../../package.json'
 
 const DocsExample = (props) => {
   const { children, href } = props

@@ -10,13 +10,14 @@ import {
   CAccordionHeader,
   CAccordionItem,
 } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
+
+
 
 const Accordion = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <DocsCallout name="Accordion" href="components/accordion" />
+        {/* <DocsCallout name="Accordion" href="components/accordion" /> */}
       </CCol>
       <CCol xs={12}>
         <CCard className="mb-4">
@@ -79,7 +80,7 @@ const Accordion = () => {
               borders, and some rounded corners to render accordions edge-to-edge with their parent
               container.
             </p>
-            <DocsExample href="components/accordion#flush">
+            <div >
               <CAccordion flush>
                 <CAccordionItem itemKey={1}>
                   <CAccordionHeader>Accordion Item #1</CAccordionHeader>
@@ -118,7 +119,7 @@ const Accordion = () => {
                   </CAccordionBody>
                 </CAccordionItem>
               </CAccordion>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -130,7 +131,7 @@ const Accordion = () => {
               Add <code>alwaysOpen</code> property to make accordion items stay open when another
               item is opened.
             </p>
-            <DocsExample href="components/accordion#flush">
+            <div>
               <CAccordion alwaysOpen>
                 <CAccordionItem itemKey={1}>
                   <CAccordionHeader>Accordion Item #1</CAccordionHeader>
@@ -169,7 +170,7 @@ const Accordion = () => {
                   </CAccordionBody>
                 </CAccordionItem>
               </CAccordion>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>

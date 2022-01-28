@@ -3,7 +3,7 @@ import React, { useEffect, useState, createRef } from 'react'
 import classNames from 'classnames'
 import axios from 'axios'
 import { rgbToHex } from '@coreui/utils'
-import { DocsLink } from 'src/components'
+
 import {
   CCard,
   CCardBody,
@@ -12,13 +12,13 @@ import {
   CRow,
   CTable,
   CTableBody,
-  CTableCaption,
+
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
+
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
   const ref = createRef()
