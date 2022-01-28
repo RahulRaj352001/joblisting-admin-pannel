@@ -1,12 +1,20 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CPopover, CRow, CCol } from '@coreui/react'
-// import { DocsCallout, DocsExample } from 'src/components'
+import React from "react";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CPopover,
+  CRow,
+  CCol,
+} from "@coreui/react";
+// import { div, div } from 'src/components'
 
 const Popovers = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <DocsCallout name="Popover" href="components/popover" />
+        <div name="Popover" href="components/popover" />
       </CCol>
       <CCol xs={12}>
         <CCard className="mb-4">
@@ -14,7 +22,7 @@ const Popovers = () => {
             <strong>React Popover</strong> <small>Basic example</small>
           </CCardHeader>
           <CCardBody>
-            <DocsExample href="components/popover">
+            <div href="components/popover">
               <CPopover
                 title="Popover title"
                 content="And here’s some amazing content. It’s very engaging. Right?"
@@ -24,7 +32,7 @@ const Popovers = () => {
                   Click to toggle popover
                 </CButton>
               </CPopover>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
@@ -35,10 +43,10 @@ const Popovers = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              Four options are available: top, right, bottom, and left aligned. Directions are
-              mirrored when using CoreUI for React in RTL.
+              Four options are available: top, right, bottom, and left aligned.
+              Directions are mirrored when using CoreUI for React in RTL.
             </p>
-            <DocsExample href="components/popover#four-directions">
+            <div href="components/popover#four-directions">
               <CPopover
                 content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                 placement="top"
@@ -63,12 +71,12 @@ const Popovers = () => {
               >
                 <CButton color="secondary">Popover on left</CButton>
               </CPopover>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Popovers
+export default Popovers;

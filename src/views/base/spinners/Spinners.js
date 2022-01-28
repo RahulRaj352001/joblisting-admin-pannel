@@ -1,12 +1,20 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CSpinner, CRow } from '@coreui/react'
-// import { DocsCallout, DocsExample } from 'src/components'
+import React from "react";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CSpinner,
+  CRow,
+} from "@coreui/react";
+// import { div, div } from 'src/components'
 
 const Accordion = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <DocsCallout name="Spinner" href="components/spinner" />
+        <div name="Spinner" href="components/spinner" />
       </CCol>
       <CCol xs={12}>
         <CCard className="mb-4">
@@ -17,14 +25,15 @@ const Accordion = () => {
             <p className="text-medium-emphasis small">
               Use the border spinners for a lightweight loading indicator.
             </p>
-            <DocsExample href="components/spinner">
+            <div href="components/spinner">
               <CSpinner />
-            </DocsExample>
+            </div>
             <p className="text-medium-emphasis small">
-              The border spinner uses <code>currentColor</code> for its <code>border-color</code>.
-              You can use any of our text color utilities on the standard spinner.
+              The border spinner uses <code>currentColor</code> for its{" "}
+              <code>border-color</code>. You can use any of our text color
+              utilities on the standard spinner.
             </p>
-            <DocsExample href="components/spinner#colors">
+            <div href="components/spinner#colors">
               <CSpinner color="primary" />
               <CSpinner color="secondary" />
               <CSpinner color="success" />
@@ -33,7 +42,7 @@ const Accordion = () => {
               <CSpinner color="info" />
               <CSpinner color="light" />
               <CSpinner color="dark" />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
@@ -44,17 +53,19 @@ const Accordion = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              If you don&#39;tfancy a border spinner, switch to the grow spinner. While it
-              doesn&#39;t technically spin, it does repeatedly grow!
+              If you don&#39;tfancy a border spinner, switch to the grow
+              spinner. While it doesn&#39;t technically spin, it does repeatedly
+              grow!
             </p>
-            <DocsExample href="components/spinner#growing-spinner">
+            <div href="components/spinner#growing-spinner">
               <CSpinner variant="grow" />
-            </DocsExample>
+            </div>
             <p className="text-medium-emphasis small">
-              Once again, this spinner is built with <code>currentColor</code>, so you can easily
-              change its appearance. Here it is in blue, along with the supported variants.
+              Once again, this spinner is built with <code>currentColor</code>,
+              so you can easily change its appearance. Here it is in blue, along
+              with the supported variants.
             </p>
-            <DocsExample href="components/spinner#growing-spinner">
+            <div href="components/spinner#growing-spinner">
               <CSpinner color="primary" variant="grow" />
               <CSpinner color="secondary" variant="grow" />
               <CSpinner color="success" variant="grow" />
@@ -63,7 +74,7 @@ const Accordion = () => {
               <CSpinner color="info" variant="grow" />
               <CSpinner color="light" variant="grow" />
               <CSpinner color="dark" variant="grow" />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
@@ -74,13 +85,13 @@ const Accordion = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              Add <code>size=&#34;sm&#34;</code> property to make a smaller spinner that can quickly
-              be used within other components.
+              Add <code>size=&#34;sm&#34;</code> property to make a smaller
+              spinner that can quickly be used within other components.
             </p>
-            <DocsExample href="components/spinner#size">
+            <div href="components/spinner#size">
               <CSpinner size="sm" />
               <CSpinner size="sm" variant="grow" />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
@@ -91,11 +102,11 @@ const Accordion = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              Use spinners within buttons to indicate an action is currently processing or taking
-              place. You may also swap the text out of the spinner element and utilize button text
-              as needed.
+              Use spinners within buttons to indicate an action is currently
+              processing or taking place. You may also swap the text out of the
+              spinner element and utilize button text as needed.
             </p>
-            <DocsExample href="components/spinner#buttons">
+            <div href="components/spinner#buttons">
               <CButton disabled>
                 <CSpinner component="span" size="sm" aria-hidden="true" />
               </CButton>
@@ -103,21 +114,31 @@ const Accordion = () => {
                 <CSpinner component="span" size="sm" aria-hidden="true" />
                 Loading...
               </CButton>
-            </DocsExample>
-            <DocsExample href="components/spinner#buttons">
+            </div>
+            <div href="components/spinner#buttons">
               <CButton disabled>
-                <CSpinner component="span" size="sm" variant="grow" aria-hidden="true" />
+                <CSpinner
+                  component="span"
+                  size="sm"
+                  variant="grow"
+                  aria-hidden="true"
+                />
               </CButton>
               <CButton disabled>
-                <CSpinner component="span" size="sm" variant="grow" aria-hidden="true" />
+                <CSpinner
+                  component="span"
+                  size="sm"
+                  variant="grow"
+                  aria-hidden="true"
+                />
                 Loading...
               </CButton>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Accordion
+export default Accordion;

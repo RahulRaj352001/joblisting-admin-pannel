@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   CButton,
   CCard,
@@ -10,8 +10,8 @@ import {
   CCol,
   CPlaceholder,
   CRow,
-} from '@coreui/react'
-// import { DocsCallout, DocsExample } from 'src/components'
+} from "@coreui/react";
+// import { div, div } from 'src/components'
 
 // import ReactImg from 'src/assets/images/react.jpg'
 
@@ -19,7 +19,7 @@ const Placeholders = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <DocsCallout name="Placeholder" href="components/placeholder" />
+        <div name="Placeholder" href="components/placeholder" />
       </CCol>
       <CCol xs={12}>
         <CCard className="mb-4">
@@ -28,24 +28,24 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              In the example below, we take a typical card component and recreate it with
-              placeholders applied to create a &#34;loading card&#34;. Size and proportions are the
-              same between the two.
+              In the example below, we take a typical card component and
+              recreate it with placeholders applied to create a &#34;loading
+              card&#34;. Size and proportions are the same between the two.
             </p>
-            <DocsExample href="components/placeholder">
+            <div href="components/placeholder">
               <div className="d-flex justify-content-around p-3">
-                <CCard style={{ width: '18rem' }}>
+                <CCard style={{ width: "18rem" }}>
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>Card title</CCardTitle>
                     <CCardText>
-                      Some quick example text to build on the card title and make up the bulk of the
-                      card&#39;s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card&#39;s content.
                     </CCardText>
                     <CButton href="#">Go somewhere</CButton>
                   </CCardBody>
                 </CCard>
-                <CCard style={{ width: '18rem' }}>
+                <CCard style={{ width: "18rem" }}>
                   <CCardImage
                     component="svg"
                     orientation="top"
@@ -61,7 +61,11 @@ const Placeholders = () => {
                     <rect width="100%" height="100%" fill="#868e96"></rect>
                   </CCardImage>
                   <CCardBody>
-                    <CPlaceholder component={CCardTitle} animation="glow" xs={7}>
+                    <CPlaceholder
+                      component={CCardTitle}
+                      animation="glow"
+                      xs={7}
+                    >
                       <CPlaceholder xs={6} />
                     </CPlaceholder>
                     <CPlaceholder component={CCardText} animation="glow">
@@ -81,7 +85,7 @@ const Placeholders = () => {
                   </CCardBody>
                 </CCard>
               </div>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -90,12 +94,12 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              Create placeholders with the <code>&lt;CPlaceholder&gt;</code> component and a grid
-              column propx (e.g., <code>xs={6}</code>) to set the <code>width</code>. They can
-              replace the text inside an element or be added as a modifier class to an existing
-              component.
+              Create placeholders with the <code>&lt;CPlaceholder&gt;</code>{" "}
+              component and a grid column propx (e.g., <code>xs={6}</code>) to
+              set the <code>width</code>. They can replace the text inside an
+              element or be added as a modifier class to an existing component.
             </p>
-            <DocsExample href="components/placeholder">
+            <div href="components/placeholder">
               <p aria-hidden="true">
                 <CPlaceholder xs={6} />
               </p>
@@ -107,7 +111,7 @@ const Placeholders = () => {
                 tabIndex={-1}
                 xs={4}
               ></CPlaceholder>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -116,14 +120,14 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              You can change the <code>width</code> through grid column classes, width utilities, or
-              inline styles.
+              You can change the <code>width</code> through grid column classes,
+              width utilities, or inline styles.
             </p>
-            <DocsExample href="components/placeholder#width">
+            <div href="components/placeholder#width">
               <CPlaceholder xs={6} />
               <CPlaceholder className="w-75" />
-              <CPlaceholder style={{ width: '30%' }} />
-            </DocsExample>
+              <CPlaceholder style={{ width: "30%" }} />
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -132,10 +136,11 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              By default, the <code>&lt;CPlaceholder&gt;</code> uses <code>currentColor</code>. This
-              can be overridden with a custom color or utility class.
+              By default, the <code>&lt;CPlaceholder&gt;</code> uses{" "}
+              <code>currentColor</code>. This can be overridden with a custom
+              color or utility class.
             </p>
-            <DocsExample href="components/placeholder#color">
+            <div href="components/placeholder#color">
               <CPlaceholder xs={12} />
 
               <CPlaceholder color="primary" xs={12} />
@@ -146,7 +151,7 @@ const Placeholders = () => {
               <CPlaceholder color="info" xs={12} />
               <CPlaceholder color="light" xs={12} />
               <CPlaceholder color="dark" xs={12} />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -155,16 +160,17 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              The size of <code>&lt;CPlaceholder&gt;</code>s are based on the typographic style of
-              the parent element. Customize them with <code>size</code> prop: <code>lg</code>,{' '}
-              <code>sm</code>, or <code>xs</code>.
+              The size of <code>&lt;CPlaceholder&gt;</code>s are based on the
+              typographic style of the parent element. Customize them with{" "}
+              <code>size</code> prop: <code>lg</code>, <code>sm</code>, or{" "}
+              <code>xs</code>.
             </p>
-            <DocsExample href="components/placeholder#sizing">
+            <div href="components/placeholder#sizing">
               <CPlaceholder xs={12} size="lg" />
               <CPlaceholder xs={12} />
               <CPlaceholder xs={12} size="sm" />
               <CPlaceholder xs={12} size="xs" />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
         <CCard className="mb-4">
@@ -173,11 +179,11 @@ const Placeholders = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-medium-emphasis small">
-              Animate placeholders with <code>animation=&#34;glow&#34;</code> or{' '}
-              <code>animation=&#34;wave&#34;</code> to better convey the perception of something
-              being <em>actively</em> loaded.
+              Animate placeholders with <code>animation=&#34;glow&#34;</code> or{" "}
+              <code>animation=&#34;wave&#34;</code> to better convey the
+              perception of something being <em>actively</em> loaded.
             </p>
-            <DocsExample href="components/placeholder#animation">
+            <div href="components/placeholder#animation">
               <CPlaceholder component="p" animation="glow">
                 <CPlaceholder xs={12} />
               </CPlaceholder>
@@ -185,12 +191,12 @@ const Placeholders = () => {
               <CPlaceholder component="p" animation="wave">
                 <CPlaceholder xs={12} />
               </CPlaceholder>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Placeholders
+export default Placeholders;

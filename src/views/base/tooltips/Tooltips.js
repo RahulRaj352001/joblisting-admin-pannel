@@ -1,12 +1,21 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CLink, CTooltip, CRow, CCol } from '@coreui/react'
-// import { DocsCallout, DocsExample } from 'src/components'
+import React from "react";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CLink,
+  CTooltip,
+  CRow,
+  CCol,
+} from "@coreui/react";
+// import { div, div } from 'src/components'
 
 const Tooltips = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <DocsCallout name="Tooltip" href="components/tooltip" />
+        <div name="Tooltip" href="components/tooltip" />
       </CCol>
       <CCol xs={12}>
         <CCard className="mb-4">
@@ -17,21 +26,22 @@ const Tooltips = () => {
             <p className="text-medium-emphasis small">
               Hover over the links below to see tooltips:
             </p>
-            <DocsExample href="components/tooltip">
+            <div href="components/tooltip">
               <p className="text-medium-emphasis">
                 Tight pants next level keffiyeh
                 <CTooltip content="Tooltip text">
                   <CLink> you probably </CLink>
                 </CTooltip>
-                haven&#39;theard of them. Photo booth beard raw denim letterpress vegan messenger
-                bag stumptown. Farm-to-table seitan, mcsweeney&#39;s fixie sustainable quinoa 8-bit
-                american apparel
+                haven&#39;theard of them. Photo booth beard raw denim
+                letterpress vegan messenger bag stumptown. Farm-to-table seitan,
+                mcsweeney&#39;s fixie sustainable quinoa 8-bit american apparel
                 <CTooltip content="Tooltip text">
                   <CLink> have a </CLink>
                 </CTooltip>
-                terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo
-                thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney&#39;&#39;s
-                cleanse vegan chambray. A really ironic artisan
+                terry richardson vinyl chambray. Beard stumptown, cardigans banh
+                mi lomo thundercats. Tofu biodiesel williamsburg marfa, four
+                loko mcsweeney&#39;&#39;s cleanse vegan chambray. A really
+                ironic artisan
                 <CTooltip content="Tooltip text">
                   <CLink> whatever keytar </CLink>
                 </CTooltip>
@@ -41,12 +51,13 @@ const Tooltips = () => {
                 </CTooltip>
                 freegan cred raw denim single-origin coffee viral.
               </p>
-            </DocsExample>
+            </div>
             <p className="text-medium-emphasis small">
-              Hover over the buttons below to see the four tooltips directions: top, right, bottom,
-              and left. Directions are mirrored when using CoreUI in RTL.
+              Hover over the buttons below to see the four tooltips directions:
+              top, right, bottom, and left. Directions are mirrored when using
+              CoreUI in RTL.
             </p>
-            <DocsExample href="components/tooltip">
+            <div href="components/tooltip">
               <CTooltip
                 content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                 placement="top"
@@ -71,12 +82,12 @@ const Tooltips = () => {
               >
                 <CButton color="secondary">Tooltip on left</CButton>
               </CTooltip>
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Tooltips
+export default Tooltips;
