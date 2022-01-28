@@ -64,9 +64,9 @@ ThemeColor.propTypes = {
 const Colors = () => {
   const [allusers, setAllusers] = useState([])
   useEffect(() => {
-    axios.get('localhost:3000/admin/getalluser').then((res) => {
+    axios.get('http://localhost:5000/admin/getalluser').then((res) => {
       setAllusers(res.data)
-      console.log(res.data)
+     
     })
   }, [])
   return (
@@ -91,12 +91,20 @@ const Colors = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
+                    {  
+                       allusers?.alluser?.map((user ,index)=>{
+                            return  (<CTableRow key={index}>
+                            <CTableHeaderCell scope="row">{index}</CTableHeaderCell>
+                            <CTableDataCell>Mark</CTableDataCell>
+                            <CTableDataCell>Otto</CTableDataCell>
+                            <CTableDataCell>@mdo</CTableDataCell>
+                          </CTableRow>
+                        )
+                        })
+                        
+                    }
+                   
+                
                 </CTableBody>
               </CTable>
             </div>
