@@ -1,33 +1,34 @@
-import PropTypes from 'prop-types'
-import React, { useEffect, useState, createRef } from 'react'
-import classNames from 'classnames'
-import axios from 'axios'
-import { rgbToHex } from '@coreui/utils'
-
+import PropTypes from "prop-types";
+import React, { useEffect, useState, createRef } from "react";
+import classNames from "classnames";
+import axios from "axios";
+import { rgbToHex } from "@coreui/utils";
+import CIcon from "@coreui/icons-react";
+import { cilPen, cilTrash, cilList, cilMenu } from "@coreui/icons";
 import {
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CRow,
   CTable,
   CTableBody,
-
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-} from '@coreui/react'
+} from "@coreui/react";
 
 const ThemeView = () => {
-  const [color, setColor] = useState('rgb(255, 255, 255)')
-  const ref = createRef()
+  const [color, setColor] = useState("rgb(255, 255, 255)");
+  const ref = createRef();
 
   useEffect(() => {
-    const el = ref.current.parentNode.firstChild
-    const varColor = window.getComputedStyle(el).getPropertyValue('background-color')
-    setColor(varColor)
-  }, [ref])
+    const el = ref.current.parentNode.firstChild;
+    const varColor = window
+      .getComputedStyle(el)
+      .getPropertyValue("background-color");
+    setColor(varColor);
+  }, [ref]);
 
   return (
     <table className="table w-100" ref={ref}>
@@ -42,33 +43,32 @@ const ThemeView = () => {
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 const ThemeColor = ({ className, children }) => {
-  const classes = classNames(className, 'theme-color w-75 rounded mb-3')
+  const classes = classNames(className, "theme-color w-75 rounded mb-3");
   return (
     <CCol xs={12} sm={6} md={4} xl={2} className="mb-4">
-      <div className={classes} style={{ paddingTop: '75%' }}></div>
+      <div className={classes} style={{ paddingTop: "75%" }}></div>
       {children}
       <ThemeView />
     </CCol>
-  )
-}
+  );
+};
 
 ThemeColor.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 
 const Colors = () => {
-  const [allusers, setAllusers] = useState([])
+  const [allusers, setAllusers] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/admin/getalluser').then((res) => {
-      setAllusers(res.data)
-     
-    })
-  }, [])
+    axios.get("http://localhost:5000/admin/getalluser").then((res) => {
+      setAllusers(res.data);
+    });
+  }, []);
   return (
     <>
       <CCol xs={12}>
@@ -91,20 +91,22 @@ const Colors = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                    {  
-                       allusers?.alluser?.map((user ,index)=>{
-                            return  (<CTableRow key={index}>
-                            <CTableHeaderCell scope="row">{index}</CTableHeaderCell>
-                            <CTableDataCell>Mark</CTableDataCell>
-                            <CTableDataCell>Otto</CTableDataCell>
-                            <CTableDataCell>@mdo</CTableDataCell>
-                          </CTableRow>
-                        )
-                        })
-                        
-                    }
-                   
-                
+                  {allusers?.alluser?.map((user, index) => {
+                    return (
+                      <CTableRow key={index}>
+                        <CTableHeaderCell scope="row">{index}</CTableHeaderCell>
+                        <CTableDataCell>{user?.name}</CTableDataCell>
+                        <CTableDataCell>{user?.username}</CTableDataCell>
+                        <CTableDataCell>{user?.email}</CTableDataCell>
+                        <CTableDataCell>{user?.country}</CTableDataCell>
+                        <CTableDataCell>{user?.mobile}</CTableDataCell>
+                        <CTableDataCell className="flex" style={{justifyContent:"space-between !important"}}>
+                          <CIcon  className='m-1.52 mb-0' style={{position:"relative",right:"0.11vw",cursor:"pointer"}}  icon={cilPen} size="lg" />
+                          <CIcon className="m-1.52 mb-0" style={{position:"relative",left:"2vw",cursor:"pointer"}} icon={cilTrash} size="lg" />
+                        </CTableDataCell>
+                      </CTableRow>
+                    );
+                  })}
                 </CTableBody>
               </CTable>
             </div>
@@ -112,7 +114,7 @@ const Colors = () => {
         </CCard>
       </CCol>
     </>
-  )
-}
+  );
+};
 
-export default Colors
+export default Colors;
