@@ -35,7 +35,7 @@ const Placeholders = () => {
             <div href="components/placeholder">
               <div className="d-flex justify-content-around p-3">
                 <CCard style={{ width: "18rem" }}>
-                  <CCardImage orientation="top" src={ReactImg} />
+                  {/* <CCardImage orientation="top" src={ReactImg} /> */}
                   <CCardBody>
                     <CCardTitle>Card title</CCardTitle>
                     <CCardText>
