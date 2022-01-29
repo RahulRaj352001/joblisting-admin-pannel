@@ -24,28 +24,27 @@ import {
   CButton,
 } from "@coreui/react";
 
+import Form1 from "./Form1";
+
 const VerticallyCentered = ({ visiblex, setVisiblex,user }) => {
   return (
     <>
       <CModal
         alignment="center"
+        size='lg'
         visible={visiblex}
         onClose={() => setVisiblex(false)}
       >
         <CModalHeader>
           <CModalTitle>{user?.name}</CModalTitle>
+          <div className="form1profile-heading">Profile Details</div>
+        <div className="form1profile-subheading">
+          Please complete your profile details and show the world a better you.
+        </div>
         </CModalHeader>
-        <CModalBody>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </CModalBody>
-        <CModalFooter>
-          <CButton color="secondary" onClick={() => setVisible(false)}>
-            Close
-          </CButton>
-          <CButton color="primary">Save changes</CButton>
-        </CModalFooter>
+        
+   <div style={{width:"50vw",marginLeft:"1.82vw"}}>      <Form1 style={{margin:"0 5vw",position:"relative",left:"1vw"}} user={user}/></div>
+        
       </CModal>
     </>
   );
