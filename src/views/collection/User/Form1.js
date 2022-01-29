@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core";
 import "./form1.css";
 // import { API_UTILS } from "./../../../env";
 
-
 import axios from "axios";
 // import { userActions } from "../../../store/userSlice";
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Form1({
- 
   user,
   bordercoloremail,
   setBordercoloremail,
@@ -55,90 +53,48 @@ export default function Form1({
     if (!isRipplingx) setCoordsx({ x: -1, y: -1 });
   }, [isRipplingx]);
 
-//   const dispatch = useDispatch();
-//   const { user, loggedInStatus } = useSelector((state) => state.user);
+  //   const dispatch = useDispatch();
+  //   const { user, loggedInStatus } = useSelector((state) => state.user);
 
   const classes = useStyles();
   const [labelEmail, setLabelEmail] = useState("Email");
-  const [labelfname, setLabelfname] = useState("First Name");
-  const [labellname, setLabellname] = useState("Last Name");
+  const [labelfname, setLabelfname] = useState("Name");
+
   const [labelusername, setLabelusername] = useState("Username");
+  const [labeltitle, setLabeltitle] = useState("Title");
   const [labelmobile, setlabelmobile] = useState("Mobile Number");
-  const [labeldate, setLabeldate] = useState(user?.dob ? "Date of Birth" : "");
-  const [labeltextArea, setLabeltextArea] = useState("About me");
+  const [labelcountry, setlabelcountry] = useState("Country");
+  const [labeltextArea, setLabeltextArea] = useState("Overview");
   const [colorsave, setColorSave] = useState(false);
 
-  const [link1data, setLink1data] = useState("");
-  const [link2data, setLink2data] = useState("");
-  const [datex, setDatex] = useState(new Date(user?.dob));
-  const [link2dataone, setLink2dataone] = useState("");
-  const [link2datatwo, setLink2datatwo] = useState("");
-  const [showlinlone, setShowlinlone] = useState(
-    user?.socialLinks && user?.socialLinks[2] ? true : false
-  );
-  const [showlinltwo, setShowlinltwo] = useState(
-    user?.socialLinks && user?.socialLinks[3] ? true : false
-  );
-  const [showlinklone, setShowlinklone] = useState(
-    user?.socialLinks && user?.socialLinks[0] ? true : false
-  );
-  const [showlinkltwo, setShowlinkltwo] = useState(
-    user?.socialLinks && user?.socialLinks[1] ? true : false
-  );
+  const [firstname, setFirstname] = useState(user?.name || null);
 
-  const [firstname, setFirstname] = useState(user?.firstName || null);
-  const [lastname, setLastname] = useState(user?.lastName || null);
   const [email, setEmail] = useState(user?.email || null);
+  const [title, setTitle] = useState(user?.title || null);
   const [username, setusername] = useState(user?.username || null);
   const [mobile, setmobile] = useState(
     user?.mobile ? user?.mobile : user?.temporaryMobile || null
   );
-  const [dateofbirth, setDateofbirth] = useState(user?.dob || null);
-  const [about, setAbout] = useState(user?.about || null);
-  const [profilePic, setProfilePic] = useState(user?.profilePic || null);
-  const [coverPic, setCoverPic] = useState(user?.coverPic || null);
-  const [bordercolor, setBordercolor] = useState(true);
+  const [country, setcountry] = useState(user?.country || null);
+  const [about, setAbout] = useState(user?.overview || null);
 
-  function checkemailormobile(data) {
-    if (validator.isEmail(data)) {
-      setLabelEmail("Email");
-      setBordercoloremail(true);
-    } else if (data === "") {
-      setLabelEmail("");
-      setBordercoloremail(true);
-    } else {
-      setLabelEmail("Invalid Email");
-      setBordercoloremail(false);
-    }
-  }
+  const [bordercolor, setBordercolor] = useState(true);
 
   function handleform1submit() {
     const formdata = {
-      coverPic: coverPic,
-      profilePic: profilePic,
       firstName: firstname,
-      lastName: lastname,
+
       userEmail: email,
       username: username,
       mobile: mobile,
       about: about,
-      dob: dateofbirth,
-      socialLinks: link2datatwo
-        ? [link1data, link2data, link2dataone, link2datatwo]
-        : link2dataone
-        ? [link1data, link2data, link2dataone]
-        : link2data
-        ? [link1data, link2data]
-        : [link1data],
     };
 
     axios
       .post(`${API_UTILS}/user/update-profile/${user?.userId}`, formdata)
       .then(async (res) => {
-        // //console.log((res);
-
         setBordercolor(true);
-        await getUserData();
+
         setColorSave(true);
         setBordercoloremail(true);
         setBordercolormobile(true);
@@ -152,33 +108,9 @@ export default function Form1({
       });
   }
 
-  async function getUserData() {
-    try {
-      const data = await axios.get(
-        `${API_UTILS}/user/get-all-data/${user?.userId}`
-      );
-
-      //console.log((data.data, "hi");
-      const userDetails = {
-        ...data?.data?.data,
-        userInfo: {
-          firstName: data?.data?.data?.firstName,
-          lastName: data?.data?.data?.lastName,
-          about: data?.data?.data?.about,
-          dob: data?.data?.data?.dob,
-        },
-      };
-      window.localStorage.setItem("user", JSON.stringify(userDetails));
-    //   dispatch(userActions.setUser({ user: userDetails }));
-    } catch (err) {
-      //console.log((err.message);
-    }
-  }
-
   return (
     <div className="form1-container">
       <div className="form1prifile-detail">
-        
         <div className="form1profile-fullname">
           <div style={{ marginRight: "1.5vmax" }} className="form1fname">
             <div className="email-box">
@@ -199,7 +131,7 @@ export default function Form1({
                   id="standard-basic"
                   label={labelfname}
                   value={firstname}
-                  placeholder="First Name"
+                  placeholder="Name"
                   inputProps={{ className: classes.input }}
                   InputLabelProps={{
                     style: {
@@ -242,9 +174,9 @@ export default function Form1({
                 <TextField
                   InputProps={{ disableUnderline: true }}
                   id="standard-basic"
-                  label={labellname}
-                  value={lastname}
-                  placeholder="Last Name"
+                  label={labelusername}
+                  value={username}
+                  placeholder="Username"
                   inputProps={{ className: classes.input }}
                   InputLabelProps={{
                     style: {
@@ -258,12 +190,12 @@ export default function Form1({
                     },
                   }}
                   onChange={(e) => {
-                    setColorSave(false);
-                    setLastname(e.target.value);
-                    setLabellname("Last Name");
+                    setusername(e.target.value);
+                    setLabelusername("Username");
                     if (e.target.value === "") {
-                      setLabellname("");
+                      setLabelusername("");
                     }
+                    setColorSave(false);
                   }}
                   variant="standard"
                 />
@@ -306,9 +238,6 @@ export default function Form1({
                       color: bordercoloremail ? "#6B6B6B" : "red",
                     },
                   }}
-                  onBlur={(e) => {
-                    checkemailormobile(e.target.value);
-                  }}
                   onChange={(e) => {
                     setEmail(e.target.value);
                     setLabelEmail("Email");
@@ -343,9 +272,9 @@ export default function Form1({
                 <TextField
                   InputProps={{ disableUnderline: true }}
                   id="standard-basic"
-                  label={labelusername}
-                  value={username}
-                  placeholder="Username"
+                  label={labeltitle}
+                  value={title}
+                  placeholder="title"
                   inputProps={{ className: classes.input }}
                   InputLabelProps={{
                     style: {
@@ -358,10 +287,10 @@ export default function Form1({
                     },
                   }}
                   onChange={(e) => {
-                    setusername(e.target.value);
-                    setLabelusername("Username");
+                    setTitle(e.target.value);
+                    setLabeltitle("Title");
                     if (e.target.value === "") {
-                      setLabelusername("");
+                      setLabeltitle("");
                     }
                     setColorSave(false);
                   }}
@@ -410,7 +339,7 @@ export default function Form1({
                     },
                   }}
                   onChange={(e) => {
-                    if (e.target.value.length < 11) {
+                    if (e.target.value.length < 14) {
                       setmobile(e.target.value);
                     }
                     setlabelmobile("Mobile Number");
@@ -440,16 +369,11 @@ export default function Form1({
                 autoComplete="off"
               >
                 <TextField
-                  type="date"
                   InputProps={{ disableUnderline: true }}
                   id="standard-basic"
-                  placeholder="Date of Birth"
-                  label={labeldate}
-                  value={
-                    dateofbirth?.length > 10
-                      ? dateofbirth?.slice(0, 10)
-                      : dateofbirth
-                  }
+                  placeholder="Country"
+                  label={labelcountry}
+                  value={country}
                   inputProps={{ className: classes.input }}
                   InputLabelProps={{
                     shrink: true,
@@ -464,10 +388,10 @@ export default function Form1({
                     },
                   }}
                   onChange={(e) => {
-                    setDateofbirth(e.target.value);
-                    setLabeldate("Date of Birth");
+                    setcountry(e.target.value);
+                    setlabelcountry("Country");
                     if (e.target.value === "") {
-                      setLabeldate("");
+                      setlabelcountry("");
                     }
                     setColorSave(false);
                   }}
@@ -486,8 +410,8 @@ export default function Form1({
               {labeltextArea}
             </p>
             <textarea
-              rows="3"
-              placeholder="About me"
+              rows="4"
+              placeholder="OverView"
               className="textareaProfile"
               value={about}
               onChange={(e) => {
@@ -495,68 +419,53 @@ export default function Form1({
                   setAbout(e.target.value);
                 }
                 // setAbout(e.target.value);
-                setLabeltextArea("About Me");
+                setLabeltextArea("Overview");
                 if (e.target.value === "") {
                   setLabeltextArea("");
                 }
                 setColorSave(false);
               }}
             />
-            <div
-              style={{
-                fontFamily: "DM Sans",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "0.9vw",
-                color: "#263238",
-                textAlign: "right",
-                marginRight: "0.52vw",
-              }}
-            >
-              {about?.length}/150
-            </div>
+            
           </div>
         </div>
       </div>
-     
 
-          <div className="form1-save">
-            <button
+      <div className="form1-save">
+        <button
+          style={{
+            backgroundColor: colorsave ? "#6AB04C" : "#FB7750",
+            color: colorsave ? "white" : "",
+          }}
+          onClick={(e) => {
+            handleform1submit(e);
+            const rect = e.target.getBoundingClientRect();
+            setCoords({
+              x: e.clientX - rect.left,
+              y: e.clientY - rect.top,
+            });
+          }}
+          className="form1-save-button ripple-button"
+        >
+          {isRippling ? (
+            <span
+              className="ripple"
               style={{
-                backgroundColor: colorsave ? "#6AB04C" : "#FB7750",
-                color: colorsave ? "white" : "",
+                left: coords.x,
+                top: coords.y,
               }}
-              onClick={(e) => {
-                handleform1submit(e);
-                const rect = e.target.getBoundingClientRect();
-                setCoords({
-                  x: e.clientX - rect.left,
-                  y: e.clientY - rect.top,
-                });
-              }}
-              className="form1-save-button ripple-button"
-            >
-              {isRippling ? (
-                <span
-                  className="ripple"
-                  style={{
-                    left: coords.x,
-                    top: coords.y,
-                  }}
-                />
-              ) : (
-                ""
-              )}
-              <span
-                className="content"
-                style={{ color: colorsave ? "white" : "white" }}
-              >
-                {colorsave ? "Saved" : "Save"}
-              </span>
-            </button>
-          </div>
-        </div>
-     
-  
+            />
+          ) : (
+            ""
+          )}
+          <span
+            className="content"
+            style={{ color: colorsave ? "white" : "white" }}
+          >
+            {colorsave ? "Saved" : "Save"}
+          </span>
+        </button>
+      </div>
+    </div>
   );
 }

@@ -26,25 +26,31 @@ import {
 
 import Form1 from "./Form1";
 
-const VerticallyCentered = ({ visiblex, setVisiblex,user }) => {
+const VerticallyCentered = ({ visiblex, setVisiblex, user }) => {
   return (
     <>
       <CModal
         alignment="center"
-        size='lg'
+        size="lg"
         visible={visiblex}
         onClose={() => setVisiblex(false)}
       >
         <CModalHeader>
-          <CModalTitle>{user?.name}</CModalTitle>
-          <div className="form1profile-heading">Profile Details</div>
-        <div className="form1profile-subheading">
-          Please complete your profile details and show the world a better you.
-        </div>
+          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Details
+          <div className="form1profile-subheading">
+            Please complete your profile details and show the world a better
+            you.
+          </div></div>
+          
         </CModalHeader>
-        
-   <div style={{width:"50vw",marginLeft:"1.82vw"}}>      <Form1 style={{margin:"0 5vw",position:"relative",left:"1vw"}} user={user}/></div>
-        
+
+        <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
+          {" "}
+          <Form1
+            style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
+            user={user}
+          />
+        </div>
       </CModal>
     </>
   );
@@ -95,8 +101,8 @@ ThemeColor.propTypes = {
 
 const Colors = () => {
   const [allusers, setAllusers] = useState([]);
-  const [visible, setVisible] = useState(true);
-  const [visibleuser, setVisibleuser] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [visibleuser, setVisibleuser] = useState(null);
   const deleteUser = (_id) => {
     axios
       .delete(`http://localhost:5000/admin/deleteuser/${_id}`)
@@ -148,7 +154,7 @@ const Colors = () => {
                           <CIcon
                             onClick={() => {
                               setVisible(!visible);
-                              setVisibleuser(user)
+                              setVisibleuser(user);
                             }}
                             className="m-1.52 mb-0"
                             style={{
@@ -177,7 +183,7 @@ const Colors = () => {
                     );
                   })}
                 </CTableBody>
-                {visible ? (
+                {visibleuser ? (
                   <VerticallyCentered
                     visiblex={visible}
                     setVisiblex={setVisible}
