@@ -16,8 +16,40 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
+  CButton,
 } from "@coreui/react";
 
+const VerticallyCentered = ({ visiblex, setVisiblex,user }) => {
+  return (
+    <>
+      <CModal
+        alignment="center"
+        visible={visiblex}
+        onClose={() => setVisiblex(false)}
+      >
+        <CModalHeader>
+          <CModalTitle>{user?.name}</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary">Save changes</CButton>
+        </CModalFooter>
+      </CModal>
+    </>
+  );
+};
 const ThemeView = () => {
   const [color, setColor] = useState("rgb(255, 255, 255)");
   const ref = createRef();
@@ -64,6 +96,17 @@ ThemeColor.propTypes = {
 
 const Colors = () => {
   const [allusers, setAllusers] = useState([]);
+  const [visible, setVisible] = useState(true);
+  const [visibleuser, setVisibleuser] = useState({});
+  const deleteUser = (_id) => {
+    axios
+      .delete(`http://localhost:5000/admin/deleteuser/${_id}`)
+      .then((res) => {
+        axios.get("http://localhost:5000/admin/getalluser").then((res) => {
+          setAllusers(res.data);
+        });
+      });
+  };
   useEffect(() => {
     axios.get("http://localhost:5000/admin/getalluser").then((res) => {
       setAllusers(res.data);
@@ -100,14 +143,50 @@ const Colors = () => {
                         <CTableDataCell>{user?.email}</CTableDataCell>
                         <CTableDataCell>{user?.country}</CTableDataCell>
                         <CTableDataCell>{user?.mobile}</CTableDataCell>
-                        <CTableDataCell className="flex" style={{justifyContent:"space-between !important"}}>
-                          <CIcon  className='m-1.52 mb-0' style={{position:"relative",right:"0.11vw",cursor:"pointer"}}  icon={cilPen} size="lg" />
-                          <CIcon className="m-1.52 mb-0" style={{position:"relative",left:"2vw",cursor:"pointer"}} icon={cilTrash} size="lg" />
+                        <CTableDataCell
+                          style={{ justifyContent: "space-between !important" }}
+                        >
+                          <CIcon
+                            onClick={() => {
+                              setVisible(!visible);
+                              setVisibleuser(user)
+                            }}
+                            className="m-1.52 mb-0"
+                            style={{
+                              position: "relative",
+                              right: "0.11vw",
+                              cursor: "pointer",
+                              color: "blue",
+                            }}
+                            icon={cilPen}
+                            size="lg"
+                          />
+
+                          <CIcon
+                            onClick={() => deleteUser(user?._id)}
+                            style={{
+                              cursor: "pointer",
+                              color: "red",
+                              position: "relative",
+                              left: "2vw",
+                            }}
+                            icon={cilTrash}
+                            size="lg"
+                          />
                         </CTableDataCell>
                       </CTableRow>
                     );
                   })}
                 </CTableBody>
+                {visible ? (
+                  <VerticallyCentered
+                    visiblex={visible}
+                    setVisiblex={setVisible}
+                    user={visibleuser}
+                  />
+                ) : (
+                  ""
+                )}
               </CTable>
             </div>
           </CCardBody>
