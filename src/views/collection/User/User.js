@@ -26,7 +26,7 @@ import {
 
 import Form1 from "./Form1";
 
-const VerticallyCentered = ({ visiblex, setVisiblex, user }) => {
+const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
   return (
     <>
       <CModal
@@ -47,6 +47,8 @@ const VerticallyCentered = ({ visiblex, setVisiblex, user }) => {
         <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
           {" "}
           <Form1
+          setVisible={setVisiblex}
+            setAllusers={setAllusers}
             style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
             user={user}
           />
@@ -188,6 +190,7 @@ const Colors = () => {
                     visiblex={visible}
                     setVisiblex={setVisible}
                     user={visibleuser}
+                    setAllusers={setAllusers}
                   />
                 ) : (
                   ""

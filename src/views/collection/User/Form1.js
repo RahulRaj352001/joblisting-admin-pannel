@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({ user }) {
+export default function Form1({ user,setAllusers, setVisible }) {
   const [coords, setCoords] = React.useState({ x: -1, y: -1 });
   const [isRippling, setIsRippling] = React.useState(false);
 
@@ -45,35 +45,37 @@ export default function Form1({ user }) {
   const [mobile, setmobile] = useState(user?.mobile || null);
   const [country, setcountry] = useState(user?.country || null);
   const [about, setAbout] = useState(user?.overview || null);
-
   const [bordercolor, setBordercolor] = useState(true);
 
   function handleform1submit() {
     const formdata = {
-      firstName: firstname,
-
-      userEmail: email,
+      name: firstname,
+      email: email,
       username: username,
       mobile: mobile,
-      about: about,
+      title: title,
+      overview: about,
+      country: country,
     };
 
     axios
-      .post(`${API_UTILS}/user/update-profile/${user?.userId}`, formdata)
+      .post(`http://localhost:5000/admin/updateuser/${user?._id}`, formdata)
       .then(async (res) => {
         setBordercolor(true);
-
+        axios.get("http://localhost:5000/admin/getalluser").then((res) => {
+            setAllusers(res.data);
+            setVisible(false)
+          });
         setColorSave(true);
-        setBordercoloremail(true);
-        setBordercolormobile(true);
-      })
-      .catch(async (err) => {
-        //console.log((err.response.data.error);
-        if (err.response.data.error === "Username already exists") {
-          setBordercolor(false);
-          setLabelusername("Duplicate Username ");
-        }
       });
+    //   .catch(async (err) => {
+    //     //console.log((err.response.data.error);
+    //     if (err.response.data.error === "Username already exists") {
+    //       setBordercolor(false);
+    //       setLabelusername("Duplicate Username ");
+    //       setLabelfname("Duplicate Name ");
+    //     }
+    //   });
   }
 
   return (
@@ -298,7 +300,6 @@ export default function Form1({ user }) {
                   InputLabelProps={{
                     style: {
                       fontSize: "1vw",
-
                       marginLeft: "15px",
                       fontFamily: "DM Sans",
                       fontStyle: "normal",
@@ -307,7 +308,7 @@ export default function Form1({ user }) {
                     },
                   }}
                   onChange={(e) => {
-                    if (e.target.value.length < 14) {
+                    if (e.target.value.length < 13) {
                       setmobile(e.target.value);
                     }
                     setlabelmobile("Mobile Number");
