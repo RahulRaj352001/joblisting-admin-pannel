@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { makeStyles } from "@material-ui/core";
-// import { useSelector, useDispatch } from "react-redux";
-
 import "./form1.css";
-// import { API_UTILS } from "./../../../env";
-
 import axios from "axios";
-// import { userActions } from "../../../store/userSlice";
+
 const useStyles = makeStyles((theme) => ({
   input: {
     fontFamily: "DM Sans",
@@ -19,13 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({
-  user,
-  bordercoloremail,
-  setBordercoloremail,
-  bordercolormobile,
-  setBordercolormobile,
-}) {
+export default function Form1({ user }) {
   const [coords, setCoords] = React.useState({ x: -1, y: -1 });
   const [isRippling, setIsRippling] = React.useState(false);
 
@@ -35,46 +25,24 @@ export default function Form1({
       setTimeout(() => setIsRippling(false), 300);
     } else setIsRippling(false);
   }, [coords]);
-
   React.useEffect(() => {
     if (!isRippling) setCoords({ x: -1, y: -1 });
   }, [isRippling]);
-  const [coordsx, setCoordsx] = React.useState({ x: -1, y: -1 });
-  const [isRipplingx, setIsRipplingx] = React.useState(false);
-
-  React.useEffect(() => {
-    if (coordsx.x !== -1 && coordsx.y !== -1) {
-      setIsRipplingx(true);
-      setTimeout(() => setIsRipplingx(false), 300);
-    } else setIsRipplingx(false);
-  }, [coordsx]);
-
-  React.useEffect(() => {
-    if (!isRipplingx) setCoordsx({ x: -1, y: -1 });
-  }, [isRipplingx]);
-
-  //   const dispatch = useDispatch();
-  //   const { user, loggedInStatus } = useSelector((state) => state.user);
 
   const classes = useStyles();
   const [labelEmail, setLabelEmail] = useState("Email");
   const [labelfname, setLabelfname] = useState("Name");
-
   const [labelusername, setLabelusername] = useState("Username");
   const [labeltitle, setLabeltitle] = useState("Title");
   const [labelmobile, setlabelmobile] = useState("Mobile Number");
   const [labelcountry, setlabelcountry] = useState("Country");
   const [labeltextArea, setLabeltextArea] = useState("Overview");
   const [colorsave, setColorSave] = useState(false);
-
   const [firstname, setFirstname] = useState(user?.name || null);
-
   const [email, setEmail] = useState(user?.email || null);
   const [title, setTitle] = useState(user?.title || null);
   const [username, setusername] = useState(user?.username || null);
-  const [mobile, setmobile] = useState(
-    user?.mobile ? user?.mobile : user?.temporaryMobile || null
-  );
+  const [mobile, setmobile] = useState(user?.mobile || null);
   const [country, setcountry] = useState(user?.country || null);
   const [about, setAbout] = useState(user?.overview || null);
 
@@ -206,7 +174,7 @@ export default function Form1({
         <div className="form1profile-fullusername">
           <div style={{ marginRight: "1.5vmax" }} className="form1email">
             <div
-              style={{ border: bordercoloremail ? "" : " 2px solid red" }}
+              //   style={{ border: bordercoloremail ? "" : " 2px solid red" }}
               className="email-box"
             >
               <Box
@@ -235,7 +203,7 @@ export default function Form1({
                       fontFamily: "DM Sans",
                       fontStyle: "normal",
                       fontWeight: "500",
-                      color: bordercoloremail ? "#6B6B6B" : "red",
+                      color: "#6B6B6B",
                     },
                   }}
                   onChange={(e) => {
@@ -304,7 +272,7 @@ export default function Form1({
           <div style={{ marginRight: "1.5vmax" }} className="form1mobile">
             {" "}
             <div
-              style={{ border: bordercolormobile ? "" : " 2px solid red" }}
+              //   style={{ border: bordercolormobile ? "" : " 2px solid red" }}
               className="email-box"
             >
               <Box
@@ -335,7 +303,7 @@ export default function Form1({
                       fontFamily: "DM Sans",
                       fontStyle: "normal",
                       fontWeight: "500",
-                      color: bordercolormobile ? "#6B6B6B" : "red",
+                      color: "#6B6B6B",
                     },
                   }}
                   onChange={(e) => {
@@ -426,7 +394,6 @@ export default function Form1({
                 setColorSave(false);
               }}
             />
-            
           </div>
         </div>
       </div>
