@@ -4,7 +4,7 @@ import classNames from "classnames";
 import axios from "axios";
 import { rgbToHex } from "@coreui/utils";
 import CIcon from "@coreui/icons-react";
-import { cilPen, cilTrash, cilList, cilMenu } from "@coreui/icons";
+import { cilPen, cilTrash } from "@coreui/icons";
 import {
   CCard,
   CCardBody,
@@ -17,11 +17,9 @@ import {
   CTableHeaderCell,
   CTableRow,
   CModal,
-  CModalBody,
-  CModalFooter,
+ 
   CModalHeader,
-  CModalTitle,
-  CButton,
+  
 } from "@coreui/react";
 
 import Form1 from "./Form1";
@@ -144,7 +142,7 @@ const Colors = () => {
                   {allusers?.alluser?.map((user, index) => {
                     return (
                       <CTableRow key={index}>
-                        <CTableHeaderCell scope="row">{index}</CTableHeaderCell>
+                        <CTableHeaderCell scope="row">{index+1}</CTableHeaderCell>
                         <CTableDataCell>{user?.name}</CTableDataCell>
                         <CTableDataCell>{user?.username}</CTableDataCell>
                         <CTableDataCell>{user?.email}</CTableDataCell>
