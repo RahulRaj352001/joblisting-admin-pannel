@@ -4,7 +4,7 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/collection/colors/Colors'))
 
 const User = React.lazy(() => import('./views/collection/User/User'))
-const Createjob = React.lazy(() => import('./views/collection/createjob/Createjob'))
+
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -58,7 +58,7 @@ const routes = [
   { path: '/collection', name: 'collection', component: Colors, exact: true },
   { path: '/collection/jobs', name: 'Jobs', component: Colors },
   { path: '/collection/user', name: 'User', component: User },
-  { path: '/collection/createjob', name: 'CreateJob', component: Createjob },
+ 
   
   { path: '/base', name: 'Base', component: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', component: Accordion },

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({ setAllusers, setVisiblex }) {
+export default function Form1({ setAllusers, setVisiblex,user }) {
   const classes = useStyles();
 
   const [labeltextArea, setLabeltextArea] = useState("Description");
@@ -102,7 +102,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Title"
-                      value={firstname}
+                      value={user?.title}
                       placeholder="Title"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -142,7 +142,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Job Type"
-                      value={username}
+                      value={user?.jobType}
                       placeholder="Job Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -184,7 +184,10 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Skills"
-                      value={skillx}
+                      value={user?.
+                        skillRequired?.map((skill)=>{
+                          return (skill?.skill)
+                      })}
                       placeholder="Add Skills ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -232,7 +235,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Minimum Price"
-                      value={email}
+                      value={user?.minPrice}
                       placeholder="Minimum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -278,7 +281,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Maximum Price"
-                      value={title}
+                      value={user?.maxPrice}
                       placeholder="Maximum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -319,7 +322,9 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Languages"
-                      value={languagex}
+                      value={user?.languages?.map((el)=>{
+                          return (el.language)
+                      })}
                       placeholder="Add Language ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -367,7 +372,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label={"Listing Type"}
-                      value={mobile}
+                      value={user?.listingType}
                       placeholder="Listing Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -409,7 +414,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       id="standard-basic"
                       placeholder="Location"
                       label={"Location"}
-                      value={country}
+                      value={user?.location}
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
                         style: {
@@ -445,7 +450,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                   rows="4"
                   placeholder="Description"
                   className="textareaProfile"
-                  value={about}
+                  value={user?.description}
                   onChange={(e) => {
                     if (e.target.value.length < 151) {
                       setAbout(e.target.value);

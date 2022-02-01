@@ -4,7 +4,7 @@ import classNames from "classnames";
 import axios from "axios";
 import { rgbToHex } from "@coreui/utils";
 import CIcon from "@coreui/icons-react";
-import { cilPen, cilTrash } from "@coreui/icons";
+import { cilLowVision, cilPen, cilTrash } from "@coreui/icons";
 import {
   CCard,
   CCardBody,
@@ -23,6 +23,7 @@ import {
 } from "@coreui/react";
 
 import Form1 from "./Form1";
+import Form2 from "./Form2";
 
 const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
   return (
@@ -34,7 +35,7 @@ const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
         onClose={() => setVisiblex(false)}
       >
         <CModalHeader>
-          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Details
+          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Update
           <div className="form1profile-subheading">
             Please complete your profile details and show the world a better
             you.
@@ -45,6 +46,37 @@ const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
         <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
           {" "}
           <Form1
+          setVisible={setVisiblex}
+            setAllusers={setAllusers}
+            style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
+            user={user}
+          />
+        </div>
+      </CModal>
+    </>
+  );
+};
+const VerticallyCentered2 = ({ visiblex, setVisiblex, user,setAllusers }) => {
+  return (
+    <>
+      <CModal
+        alignment="center"
+        size="lg"
+        visible={visiblex}
+        onClose={() => setVisiblex(false)}
+      >
+        <CModalHeader>
+          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Details
+          <div className="form1profile-subheading">
+            Please  show the world a better
+            you.
+          </div></div>
+          
+        </CModalHeader>
+
+        <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
+          {" "}
+          <Form2
           setVisible={setVisiblex}
             setAllusers={setAllusers}
             style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
@@ -102,7 +134,9 @@ ThemeColor.propTypes = {
 const Colors = () => {
   const [allusers, setAllusers] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [visible2, setVisible2] = useState(false);
   const [visibleuser, setVisibleuser] = useState(null);
+  const [visibleuser2, setVisibleuser2] = useState(null);
   const deleteUser = (_id) => {
     axios
       .delete(`http://localhost:5000/admin/deleteuser/${_id}`)
@@ -153,13 +187,28 @@ const Colors = () => {
                         >
                           <CIcon
                             onClick={() => {
+                              setVisible2(!visible2);
+                              setVisibleuser2(user);
+                            }}
+                            className="m-1.52 mb-0"
+                            style={{
+                              position: "relative",
+                              right: "0.11vw",
+                              cursor: "pointer",
+                              color: "green",
+                            }}
+                            icon={cilLowVision}
+                            size="lg"
+                          />
+                          <CIcon
+                            onClick={() => {
                               setVisible(!visible);
                               setVisibleuser(user);
                             }}
                             className="m-1.52 mb-0"
                             style={{
                               position: "relative",
-                              right: "0.11vw",
+                              left: "1vw",
                               cursor: "pointer",
                               color: "blue",
                             }}
@@ -173,7 +222,7 @@ const Colors = () => {
                               cursor: "pointer",
                               color: "red",
                               position: "relative",
-                              left: "2vw",
+                              left: "2.1vw",
                             }}
                             icon={cilTrash}
                             size="lg"
@@ -188,6 +237,16 @@ const Colors = () => {
                     visiblex={visible}
                     setVisiblex={setVisible}
                     user={visibleuser}
+                    setAllusers={setAllusers}
+                  />
+                ) : (
+                  ""
+                )}
+                {visibleuser2 ? (
+                  <VerticallyCentered2
+                    visiblex={visible2}
+                    setVisiblex={setVisible2}
+                    user={visibleuser2}
                     setAllusers={setAllusers}
                   />
                 ) : (

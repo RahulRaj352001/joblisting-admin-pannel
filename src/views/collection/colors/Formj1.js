@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({ setAllusers, setVisiblex }) {
+export default function Form1({ setAllusers, setVisiblex,user }) {
   const classes = useStyles();
 
   const [labeltextArea, setLabeltextArea] = useState("Description");
@@ -102,7 +102,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Title"
-                      value={firstname}
+                      value={user?.title}
                       placeholder="Title"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -115,10 +115,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setColorSave(false);
-                        setFirstname(e.target.value);
-                      }}
+                     
                       variant="standard"
                     />
                   </Box>
@@ -142,7 +139,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Job Type"
-                      value={username}
+                      value={user?.jobType}
                       placeholder="Job Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -156,11 +153,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setusername(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                      
                       variant="standard"
                     />
                   </Box>
@@ -184,7 +177,10 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Skills"
-                      value={skillx}
+                      value={user?.
+                        skillRequired?.map((skill)=>{
+                          return (skill?.skill)
+                      })}
                       placeholder="Add Skills ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -198,11 +194,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setSkillx(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                    
                       variant="standard"
                     />
                   </Box>
@@ -232,7 +224,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Minimum Price"
-                      value={email}
+                      value={user?.minPrice}
                       placeholder="Minimum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -245,11 +237,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                     
                       variant="standard"
                     />
                   </Box>
@@ -278,7 +266,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Maximum Price"
-                      value={title}
+                      value={user?.maxPrice}
                       placeholder="Maximum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -291,11 +279,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: bordercolor ? "#6B6B6B" : "red",
                         },
                       }}
-                      onChange={(e) => {
-                        setTitle(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                    
                       variant="standard"
                     />
                   </Box>
@@ -319,7 +303,9 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Languages"
-                      value={languagex}
+                      value={user?.languages?.map((el)=>{
+                          return (el.language)
+                      })}
                       placeholder="Add Language ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -333,11 +319,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setLanguagex(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                     
                       variant="standard"
                     />
                   </Box>
@@ -367,7 +349,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label={"Listing Type"}
-                      value={mobile}
+                      value={user?.listingType}
                       placeholder="Listing Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -380,10 +362,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setmobile(e.target.value);
-                        setColorSave(false);
-                      }}
+                   
                       variant="standard"
                     />
                   </Box>
@@ -409,7 +388,7 @@ export default function Form1({ setAllusers, setVisiblex }) {
                       id="standard-basic"
                       placeholder="Location"
                       label={"Location"}
-                      value={country}
+                      value={user?.location}
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
                         style: {
@@ -422,11 +401,8 @@ export default function Form1({ setAllusers, setVisiblex }) {
                           color: "#6B6B6B",
                         },
                       }}
-                      onChange={(e) => {
-                        setcountry(e.target.value);
-
-                        setColorSave(false);
-                      }}
+                  
+                   
                       variant="standard"
                     />
                   </Box>
@@ -445,38 +421,14 @@ export default function Form1({ setAllusers, setVisiblex }) {
                   rows="4"
                   placeholder="Description"
                   className="textareaProfile"
-                  value={about}
-                  onChange={(e) => {
-                    if (e.target.value.length < 151) {
-                      setAbout(e.target.value);
-                    }
-
-                    setColorSave(false);
-                  }}
+                  value={user?.description}
+                
                 />
               </div>
             </div>
           </div>
 
-          <div className="form1-save">
-            <button
-              style={{
-                backgroundColor: colorsave ? "#6AB04C" : "#FB7750",
-                color: colorsave ? "white" : "",
-              }}
-              onClick={(e) => {
-                handleform1submit(e);
-              }}
-              className="form1-save-button ripple-button"
-            >
-              <span
-                className="content"
-                style={{ color: colorsave ? "white" : "white" }}
-              >
-                {colorsave ? "Saved" : "Save"}
-              </span>
-            </button>
-          </div>
+         
         </div>
       </CCardBody>
     </div>
