@@ -168,6 +168,7 @@ const Colors = () => {
                     <CTableHeaderCell scope="col">Name</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Username</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Email</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Title</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Country</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Mobile</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Settings</CTableHeaderCell>
@@ -183,6 +184,7 @@ const Colors = () => {
                         <CTableDataCell>{user?.name}</CTableDataCell>
                         <CTableDataCell>{user?.username}</CTableDataCell>
                         <CTableDataCell>{user?.email}</CTableDataCell>
+                        <CTableDataCell>{user?.title}</CTableDataCell>
                         <CTableDataCell>{user?.country}</CTableDataCell>
                         <CTableDataCell>{user?.mobile}</CTableDataCell>
                         <CTableDataCell

@@ -230,8 +230,16 @@ const Colors = () => {
                         <CTableHeaderCell scope="row">
                           {index + 1}
                         </CTableHeaderCell>
-                        <CTableDataCell>{user?.title.length>18?user?.title.slice(0,18)+"...":user.title}</CTableDataCell>
-                        <CTableDataCell>{user?.description.length>18?user?.description.slice(0,18)+"...":user.description}</CTableDataCell>
+                        <CTableDataCell>
+                          {user?.title.length > 18
+                            ? user?.title.slice(0, 18) + "..."
+                            : user.title}
+                        </CTableDataCell>
+                        <CTableDataCell>
+                          {user?.description.length > 18
+                            ? user?.description.slice(0, 18) + "..."
+                            : user.description}
+                        </CTableDataCell>
                         <CTableDataCell>{user?.jobType}</CTableDataCell>
                         <CTableDataCell>{user?.minPrice}</CTableDataCell>
                         <CTableDataCell>{user?.maxPrice}</CTableDataCell>
