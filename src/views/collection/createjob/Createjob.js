@@ -71,10 +71,12 @@ export default function Form1({ setAllusers, setVisiblex }) {
       .then(async (res) => {
         setBordercolor(true);
         setColorSave(true);
-        axios.get("http://localhost:5000/admin/getalljobs").then((res) => {
-          setAllusers(res.data);
-          setVisiblex(false);
-        });
+        await axios
+          .get("http://localhost:5000/admin/getalljobs")
+          .then((res) => {
+            setAllusers(res.data);
+            setVisiblex(false);
+          });
       });
   }
 

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({ user,setAllusers, setVisible }) {
+export default function Form1({ user, setAllusers, setVisible }) {
   const [coords, setCoords] = React.useState({ x: -1, y: -1 });
   const [isRippling, setIsRippling] = React.useState(false);
 
@@ -62,9 +62,11 @@ export default function Form1({ user,setAllusers, setVisible }) {
       .post(`http://localhost:5000/admin/updateuser/${user?._id}`, formdata)
       .then(async (res) => {
         setBordercolor(true);
-        axios.get("http://localhost:5000/admin/getalluser").then((res) => {
+        await axios
+          .get("http://localhost:5000/admin/getalluser")
+          .then((res) => {
             setAllusers(res.data);
-            setVisible(false)
+            setVisible(false);
           });
         setColorSave(true);
       });

@@ -22,8 +22,8 @@ import {
 } from "@coreui/react";
 
 import CreateJob from "../createjob/Createjob.js";
-import Formj1 from './Formj1.js'
-import Formj2 from './Formj2.js'
+import Formj1 from "./Formj1.js";
+import Formj2 from "./Formj2.js";
 const ThemeView = () => {
   const [color, setColor] = useState("rgb(255, 255, 255)");
   const ref = createRef();
@@ -63,7 +63,7 @@ const VerticallyCentered3 = ({ visiblex, setVisiblex, setAllusers }) => {
       >
         <CModalHeader>
           <div style={{ marginTop: "0.2vw" }} className="form1profile-heading">
-          EasyWork Create Job
+            EasyWork Create Job
             <div className="form1profile-subheading">
               Please complete your Job and show the world a better you.
             </div>
@@ -74,7 +74,6 @@ const VerticallyCentered3 = ({ visiblex, setVisiblex, setAllusers }) => {
           <CreateJob
             setAllusers={setAllusers}
             setVisiblex={setVisiblex}
-            user={user}
             style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
           />
         </div>
@@ -82,7 +81,7 @@ const VerticallyCentered3 = ({ visiblex, setVisiblex, setAllusers }) => {
     </>
   );
 };
-const VerticallyCentered2 = ({ visiblex, setVisiblex, setAllusers,user }) => {
+const VerticallyCentered2 = ({ visiblex, setVisiblex, setAllusers, user }) => {
   return (
     <>
       <CModal
@@ -93,9 +92,9 @@ const VerticallyCentered2 = ({ visiblex, setVisiblex, setAllusers,user }) => {
       >
         <CModalHeader>
           <div style={{ marginTop: "0.2vw" }} className="form1profile-heading">
-            EasyWork  Job Detail
+            EasyWork Job Detail
             <div className="form1profile-subheading">
-              Please  show the world a better you.
+              Please show the world a better you.
             </div>
           </div>
         </CModalHeader>
@@ -112,7 +111,7 @@ const VerticallyCentered2 = ({ visiblex, setVisiblex, setAllusers,user }) => {
     </>
   );
 };
-const VerticallyCentered = ({ visiblex, setVisiblex, setAllusers,user }) => {
+const VerticallyCentered = ({ visiblex, setVisiblex, setAllusers, user }) => {
   return (
     <>
       <CModal
@@ -167,11 +166,15 @@ const Colors = () => {
   const [visibleuser, setVisibleuser] = useState(null);
   const [visibleuser2, setVisibleuser2] = useState(null);
   const deleteUser = (_id) => {
-    axios.delete(`http://localhost:5000/admin/deletejob/${_id}`).then((res) => {
-      axios.get("http://localhost:5000/admin/getalljobs").then((res) => {
-        setAllusers(res.data);
+    axios
+      .delete(`http://localhost:5000/admin/deletejob/${_id}`)
+      .then(async (res) => {
+        await axios
+          .get("http://localhost:5000/admin/getalljobs")
+          .then((res) => {
+            setAllusers(res.data);
+          });
       });
-    });
   };
 
   useEffect(() => {
@@ -211,6 +214,7 @@ const Colors = () => {
                   <CTableRow>
                     <CTableHeaderCell scope="col">#</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Title</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Description</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Job Type</CTableHeaderCell>
                     <CTableHeaderCell scope="col">MinPrice($)</CTableHeaderCell>
                     <CTableHeaderCell scope="col">MaxPrice($)</CTableHeaderCell>
@@ -226,7 +230,8 @@ const Colors = () => {
                         <CTableHeaderCell scope="row">
                           {index + 1}
                         </CTableHeaderCell>
-                        <CTableDataCell>{user?.title}</CTableDataCell>
+                        <CTableDataCell>{user?.title.length>18?user?.title.slice(0,18)+"...":user.title}</CTableDataCell>
+                        <CTableDataCell>{user?.description.length>18?user?.description.slice(0,18)+"...":user.description}</CTableDataCell>
                         <CTableDataCell>{user?.jobType}</CTableDataCell>
                         <CTableDataCell>{user?.minPrice}</CTableDataCell>
                         <CTableDataCell>{user?.maxPrice}</CTableDataCell>

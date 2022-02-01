@@ -17,15 +17,13 @@ import {
   CTableHeaderCell,
   CTableRow,
   CModal,
- 
   CModalHeader,
-  
 } from "@coreui/react";
 
 import Form1 from "./Form1";
 import Form2 from "./Form2";
 
-const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
+const VerticallyCentered = ({ visiblex, setVisiblex, user, setAllusers }) => {
   return (
     <>
       <CModal
@@ -35,18 +33,19 @@ const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
         onClose={() => setVisiblex(false)}
       >
         <CModalHeader>
-          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Update
-          <div className="form1profile-subheading">
-            Please complete your profile details and show the world a better
-            you.
-          </div></div>
-          
+          <div style={{ marginTop: "0.2vw" }} className="form1profile-heading">
+            Profile Update
+            <div className="form1profile-subheading">
+              Please complete your profile details and show the world a better
+              you.
+            </div>
+          </div>
         </CModalHeader>
 
         <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
           {" "}
           <Form1
-          setVisible={setVisiblex}
+            setVisible={setVisiblex}
             setAllusers={setAllusers}
             style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
             user={user}
@@ -56,7 +55,7 @@ const VerticallyCentered = ({ visiblex, setVisiblex, user,setAllusers }) => {
     </>
   );
 };
-const VerticallyCentered2 = ({ visiblex, setVisiblex, user,setAllusers }) => {
+const VerticallyCentered2 = ({ visiblex, setVisiblex, user, setAllusers }) => {
   return (
     <>
       <CModal
@@ -66,18 +65,18 @@ const VerticallyCentered2 = ({ visiblex, setVisiblex, user,setAllusers }) => {
         onClose={() => setVisiblex(false)}
       >
         <CModalHeader>
-          <div style={{marginTop:"0.2vw"}} className="form1profile-heading">Profile Details
-          <div className="form1profile-subheading">
-            Please  show the world a better
-            you.
-          </div></div>
-          
+          <div style={{ marginTop: "0.2vw" }} className="form1profile-heading">
+            Profile Details
+            <div className="form1profile-subheading">
+              Please show the world a better you.
+            </div>
+          </div>
         </CModalHeader>
 
         <div style={{ width: "50vw", marginLeft: "1.82vw" }}>
           {" "}
           <Form2
-          setVisible={setVisiblex}
+            setVisible={setVisiblex}
             setAllusers={setAllusers}
             style={{ margin: "0 5vw", position: "relative", left: "1vw" }}
             user={user}
@@ -140,10 +139,12 @@ const Colors = () => {
   const deleteUser = (_id) => {
     axios
       .delete(`http://localhost:5000/admin/deleteuser/${_id}`)
-      .then((res) => {
-        axios.get("http://localhost:5000/admin/getalluser").then((res) => {
-          setAllusers(res.data);
-        });
+      .then(async (res) => {
+        await axios
+          .get("http://localhost:5000/admin/getalluser")
+          .then((res) => {
+            setAllusers(res.data);
+          });
       });
   };
   useEffect(() => {
@@ -176,7 +177,9 @@ const Colors = () => {
                   {allusers?.alluser?.map((user, index) => {
                     return (
                       <CTableRow key={index}>
-                        <CTableHeaderCell scope="row">{index+1}</CTableHeaderCell>
+                        <CTableHeaderCell scope="row">
+                          {index + 1}
+                        </CTableHeaderCell>
                         <CTableDataCell>{user?.name}</CTableDataCell>
                         <CTableDataCell>{user?.username}</CTableDataCell>
                         <CTableDataCell>{user?.email}</CTableDataCell>
