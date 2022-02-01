@@ -16,21 +16,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form1({ setAllusers, setVisiblex,user }) {
+export default function Form1({ setAllusers, setVisiblex, user }) {
   const classes = useStyles();
 
   const [labeltextArea, setLabeltextArea] = useState("Description");
   const [colorsave, setColorSave] = useState(false);
-  const [firstname, setFirstname] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [username, setusername] = useState(null);
-  const [skills, setSkills] = useState([]);
-  const [skillx, setSkillx] = useState("");
-  const [languagex, setLanguagex] = useState("");
-  const [mobile, setmobile] = useState(null);
-  const [country, setcountry] = useState(null);
-  const [about, setAbout] = useState(null);
+  const [firstname, setFirstname] = useState(user?.title || null);
+  const [email, setEmail] = useState(user?.minPrice);
+  const [title, setTitle] = useState(user?.maxPrice);
+  const [username, setusername] = useState(user?.jobType || null);
+
+  const [skillx, setSkillx] = useState(
+    user?.skillRequired?.map((skill) => {
+      return `${skill?.skill}`;
+    })
+  );
+  const [languagex, setLanguagex] = useState(
+    user?.languages?.map((el) => {
+      return el.language;
+    })
+  );
+  const [mobile, setmobile] = useState(user?.listingType);
+  const [country, setcountry] = useState(user?.location);
+  const [about, setAbout] = useState(user?.description);
   const [bordercolor, setBordercolor] = useState(true);
 
   function getSkill(myarray) {
@@ -49,25 +57,28 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
   }
 
   function handleform1submit() {
-    let myarray = skillx.split(",");
+    Array.isArray(skillx);
+    let myarray = Array.isArray(skillx) === true ? skillx : skillx.split(",");
     const totalskill = getSkill(myarray);
 
-    let myarrayx = languagex.split(",");
+    let myarrayx = Array.isArray(languagex )=== true
+      ? languagex
+      : languagex.split(",");
     const totalLanguage = getlanguage(myarrayx);
 
     const formdata = {
       title: firstname,
       jobType: username,
-      skills: totalskill,
+      skills: skillx === user?.skillRequired ? skillx : totalskill,
       listingType: mobile,
       location: country,
       description: about,
-      languages: totalLanguage,
+      languages: languagex === user?.languages ? languagex : totalLanguage,
       minPrice: parseInt(email),
       maxPrice: parseInt(title),
     };
     axios
-      .post(`http://localhost:5000/job/createjob`, formdata)
+      .post(`http://localhost:5000/admin/updatejob/${user?._id}`, formdata)
       .then(async (res) => {
         setBordercolor(true);
         setColorSave(true);
@@ -102,7 +113,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Title"
-                      value={user?.title}
+                      value={firstname}
                       placeholder="Title"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -142,7 +153,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Job Type"
-                      value={user?.jobType}
+                      value={username}
                       placeholder="Job Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -184,10 +195,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Skills"
-                      value={user?.
-                        skillRequired?.map((skill)=>{
-                          return (skill?.skill)
-                      })}
+                      value={skillx}
                       placeholder="Add Skills ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -235,7 +243,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Minimum Price"
-                      value={user?.minPrice}
+                      value={email}
                       placeholder="Minimum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -281,7 +289,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Maximum Price"
-                      value={user?.maxPrice}
+                      value={title}
                       placeholder="Maximum Price"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -322,9 +330,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label="Languages"
-                      value={user?.languages?.map((el)=>{
-                          return (el.language)
-                      })}
+                      value={languagex}
                       placeholder="Add Language ( , )"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -372,7 +378,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       InputProps={{ disableUnderline: true }}
                       id="standard-basic"
                       label={"Listing Type"}
-                      value={user?.listingType}
+                      value={mobile}
                       placeholder="Listing Type"
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
@@ -414,7 +420,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                       id="standard-basic"
                       placeholder="Location"
                       label={"Location"}
-                      value={user?.location}
+                      value={country}
                       inputProps={{ className: classes.input }}
                       InputLabelProps={{
                         style: {
@@ -450,7 +456,7 @@ export default function Form1({ setAllusers, setVisiblex,user }) {
                   rows="4"
                   placeholder="Description"
                   className="textareaProfile"
-                  value={user?.description}
+                  value={about}
                   onChange={(e) => {
                     if (e.target.value.length < 151) {
                       setAbout(e.target.value);
